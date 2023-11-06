@@ -1,0 +1,545 @@
+{
+	"info": {
+		"_postman_id": "5d8091c4-caad-4921-9b46-a91c23cfaec7",
+		"name": "APIs Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5232822",
+		"_collection_link": "https://interstellar-crescent-334111.postman.co/workspace/TestAssignment~11e4c030-5602-493a-834f-86d9e61fcbe7/collection/5232822-5d8091c4-caad-4921-9b46-a91c23cfaec7?action=share&source=collection_link&creator=5232822"
+	},
+	"item": [
+		{
+			"name": "Get Requests",
+			"item": [
+				{
+					"name": "LIST OF ALL OBJECTS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Google Pixel 6 Pro Item Exist or not\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Google Pixel 6 Pro\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/objects",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"objects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LIST OF OBJECTS BY IDS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check if First Passing Id existing or not\", function () {\r",
+									"    // Parse the JSON response\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    // Define the item you are looking for\r",
+									"    const itemToCheck = { \"id\": \"{{Id1}}\" };\r",
+									"\r",
+									"    // Check if the item exists in the response\r",
+									"    const itemExists = responseJson.some(item => {\r",
+									"        return item.propertyName === itemToCheck.propertyName &&\r",
+									"               item.propertyValue === itemToCheck.propertyValue; // Optional additional properties\r",
+									"    });\r",
+									"\r",
+									"    // Assert that the item exists\r",
+									"    pm.expect(itemExists).to.be.true;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check if Second Passing Id existing or not\", function () {\r",
+									"    // Parse the JSON response\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    // Define the item you are looking for\r",
+									"    const itemToCheck = { \"id\": \"{{Id2}}\" };\r",
+									"\r",
+									"    // Check if the item exists in the response\r",
+									"    const itemExists = responseJson.some(item => {\r",
+									"        return item.propertyName === itemToCheck.propertyName &&\r",
+									"               item.propertyValue === itemToCheck.propertyValue; // Optional additional properties\r",
+									"    });\r",
+									"\r",
+									"    // Assert that the item exists\r",
+									"    pm.expect(itemExists).to.be.true;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Check if Third Passing Id existing or not\", function () {\r",
+									"    // Parse the JSON response\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    // Define the item you are looking for\r",
+									"    const itemToCheck = { \"id\": \"{{Id3}}\" };\r",
+									"\r",
+									"    // Check if the item exists in the response\r",
+									"    const itemExists = responseJson.some(item => {\r",
+									"        return item.propertyName === itemToCheck.propertyName &&\r",
+									"               item.propertyValue === itemToCheck.propertyValue; // Optional additional properties\r",
+									"    });\r",
+									"\r",
+									"    // Assert that the item exists\r",
+									"    pm.expect(itemExists).to.be.true;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/objects?id={{Id1}}&id={{Id2}}&id={{Id3}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"objects"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{Id1}}"
+								},
+								{
+									"key": "id",
+									"value": "{{Id2}}"
+								},
+								{
+									"key": "id",
+									"value": "{{Id3}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SINGLE OBJECT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check if Passing Id exists in response\", function () {\r",
+									"\r",
+									"    const responseJson = pm.response.json();\r",
+									"    const propertyToCheck = \"7\";\r",
+									"\r",
+									"  //  pm.expect(responseJson).to.have.property(propertyToCheck);\r",
+									"   pm.expect(responseJson).to.have.property(\"id\", propertyToCheck);\r",
+									"\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/objects/{{singlevalue}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"objects",
+								"{{singlevalue}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Post Requests",
+			"item": [
+				{
+					"name": "ADD OBJECT",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"const Year = Math.floor(Math.random()*10+2000);\r",
+									"pm.globals.set(\"Year\", Year);\r",
+									"const number = Math.floor(Math.random()*10+1);\r",
+									"pm.globals.set(\"CPUModel\", \"Intel Core i\"+ number);\r",
+									"const Size = Math.floor(Math.random()*10+1);\r",
+									"pm.globals.set(\"Hard disk size\", Size+ \"TB\");\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var Response = pm.response.json();\r",
+									"pm.globals.set(\"ProductID\", Response.id);\r",
+									"pm.globals.set(\"ProductName\", Response.name);\r",
+									"\r",
+									"pm.globals.set(\"ProductYear\", Response.data.year);\r",
+									"pm.globals.set(\"ProductPrice\", Response.data.price);\r",
+									"pm.globals.set(\"ProductCPUModel\", Response.data['CPU model']);\r",
+									"pm.globals.set(\"ProductHarddisksize\", Response.data['Hard disk size']);\r",
+									"\r",
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 202]);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check if product ID is created after POST\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.id).to.exist;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"{{$randomProductName}}\",\r\n   \"data\": {\r\n      \"year\": \"{{Year}}\",\r\n      \"price\": \"{{$randomPrice}}\",\r\n      \"CPU model\": \"{{CPUModel}}\",\r\n      \"Hard disk size\": \"{{Hard disk size}}\"\r\n   }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/objects",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"objects"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Put Requests",
+			"item": [
+				{
+					"name": "UPDATE OBJECT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var Response = pm.response.json();\r",
+									"pm.globals.set(\"ProductID\", Response.id);\r",
+									"pm.globals.set(\"ProductName\", Response.name);\r",
+									"pm.globals.set(\"ProductYear\", Response.data.year);\r",
+									"pm.globals.set(\"ProductPrice\", Response.data.price);\r",
+									"pm.globals.set(\"ProductColor\", Response.data.color);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 800ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Item's Year has been updated\", function () {\r",
+									"    var responseBody = pm.response.json();\r",
+									"    var expectedUpdatedValue = 2019;\r",
+									"    pm.expect(responseBody.data.year).to.equal(expectedUpdatedValue);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Item's Price has been updated\", function () {\r",
+									"    var responseBody = pm.response.json();\r",
+									"    var expectedUpdatedValue = 2000; \r",
+									"    pm.expect(responseBody.data.price).to.equal(expectedUpdatedValue);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Item's Color has been updated\", function () {\r",
+									"    var responseBody = pm.response.json();\r",
+									"    var expectedUpdatedValue = \"silver\"; \r",
+									"    pm.expect(responseBody.data.color).to.equal(expectedUpdatedValue);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"{{ProductName}}\",\r\n   \"data\": {\r\n      \"year\": 2019,\r\n      \"price\": 2000,\r\n      \"CPU model\": \"{{ProductCPUModel}}\",\r\n      \"Hard disk size\": \"{{ProductHarddisksize}}\",\r\n      \"color\": \"silver\"\r\n   }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/objects/{{ProductID}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"objects",
+								"{{ProductID}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Patch Requests",
+			"item": [
+				{
+					"name": "PARTIALLY UPDATE OBJECT",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"ProductUpdatedName\", \"{{ProductName}}\"+\"-updated\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 800ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Item's Name has been updated\", function () {\r",
+									"    var responseBody = pm.response.json();\r",
+									"    var expectedUpdatedValue = \"-updated\";\r",
+									"    pm.expect(responseBody.name).to.contain(expectedUpdatedValue);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"{{ProductUpdatedName}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/objects/{{ProductID}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"objects",
+								"{{ProductID}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete Requests",
+			"item": [
+				{
+					"name": "DELETE OBJECT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.test('Response time is less than 200ms', function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(800);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Check if single value Passing Id existing or not\", function () {\r",
+									"    // Parse the JSON response\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    // Define the item you are looking for\r",
+									"    const itemToCheck = { \"id\": \"{{singlevalue}}\" };\r",
+									"\r",
+									"    // Check if the item exists in the response\r",
+									"    const itemExists = responseJson.hasOwnProperty(\"id\") && responseJson.id === itemToCheck.id;\r",
+									"\r",
+									"    // Assert that the item exists\r",
+									"    pm.expect(itemExists).to.be.true;\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/objects/{{ProductID}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"objects",
+								"{{ProductID}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://api.restful-api.dev",
+			"type": "string"
+		}
+	]
+}
